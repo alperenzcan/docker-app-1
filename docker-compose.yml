@@ -1,0 +1,79 @@
+version: "3.9"
+
+services:
+
+  # server:
+  #   build:
+  #     context: imperteksws
+  #     dockerfile: Dockerfile
+  #   ports:
+  #     - 9080:9080
+  #   environment:
+  #     # note that "postgres" has to match the name of the postgres container
+  #     SPRING_DATASOURCE_URL: "jdbc:mysql://mysql/imperteks-db"
+  #     DB_USERNAME: example_user
+  #     DB_PASSWORD: password123
+  #   depends_on:
+  #     - mysql
+  #   restart: always
+  #   networks:  
+  #     - imperteksnet
+    # volumes:
+    #   - file-storage:/app/files
+
+  client:
+    build:
+      context: client
+      dockerfile: Dockerfile
+    ports:
+      - "80:80"
+    # depends_on:
+    #   - server
+    restart: always
+    # networks:  
+    #   - imperteksnet
+    # volumes:
+      # - frontend-volume:/app/public
+      # - backend-volume:/app/files
+
+  # mysql:
+  #   # build:
+  #   #   context: mysql
+  #   #   dockerfile: Dockerfile
+  #   image: mysql:8.0.28
+  #   container_name: mysql-imperteks
+  #   ports:
+  #     - 4306:3306
+  #   volumes:
+  #     - dbdata:/var/lib/mysql
+  #   environment:
+  #     MYSQL_DATABASE: imperteks-db
+  #     MYSQL_ROOT_PASSWORD: hT7s9H598%tBU54!x
+  #     MYSQL_USER: example_user
+  #     MYSQL_PASSWORD: password123
+  #   restart: always
+  #   networks:  
+  #     - imperteksnet
+
+  # phpmyadmin:
+  #   image: phpmyadmin/phpmyadmin
+  #   container_name: pma-imperteks
+  #   links:
+  #     - mysql
+  #   environment:
+  #     PMA_HOST: mysql
+  #     PMA_PORT: 3306
+  #     PMA_ARBITRARY: 1
+  #   restart: always
+  #   ports:
+  #     - 9081:80
+  #   networks:  
+  #   - imperteksnet
+
+# volumes:
+#   dbdata: 
+  # file-storage: 
+  # frontend-volume:
+
+# networks:
+#   imperteksnet:
